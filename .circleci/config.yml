@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker: # run the steps with Docker
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run:
+          name: update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install node modules
+          command: npm install
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Deploy
+          command: git push https://heroku:$cb07e5d9-de47-4ac9-82ae-0571fb50ffa9@git.heroku.com/$sleepy-headland-14290.git
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
