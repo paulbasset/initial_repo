@@ -18,7 +18,7 @@ jobs:
           command: npm run build
       - run:
           name: Deploy
-          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+          command: git push https://heroku:$cb07e5d9-de47-4ac9-82ae-0571fb50ffa9@git.heroku.com/$sleepy-headland-14290.git
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
